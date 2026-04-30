@@ -1,0 +1,3 @@
+Model,R²,RMSE
+Global OLS,0.003,11.1829
+GWR (Gaussian kernel),0.1025,10.6101

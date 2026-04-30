@@ -1,0 +1,5 @@
+,Winter,Spring,Summer,Fall
+Winter,1.0,0.0,0.0,0.0
+Spring,0.0,1.0,0.0,0.0
+Summer,0.0,0.0,1.0,0.0
+Fall,0.0,0.0,0.0,1.0

@@ -1,0 +1,20 @@
+Feature,Description,Category
+Hour_sin/cos,Cyclical hour encoding,Temporal
+Month_sin/cos,Cyclical month encoding,Temporal
+DOW_sin/cos,Cyclical day-of-week encoding,Temporal
+Week_sin/cos,Cyclical week-of-year encoding,Temporal
+IsWeekend,Binary weekend flag,Temporal
+IsRushHour,Peak traffic hours flag,Temporal
+IsNight,Nighttime flag (20:00-06:00),Temporal
+Season,Meteorological season,Temporal
+TimeOfDay,Time of day category,Temporal
+StateMonthCount,State-month event density,Spatio-Temporal
+GridCell/Count,1-degree spatial grid & density,Spatial
+HexCell/Count,0.5-degree hex grid & density,Spatial
+DistFromCenter,Distance from US centroid,Spatial
+POI_Count,Aggregate nearby POI count,Spatial
+LowVisibility,Visibility below 3mi flag,Weather
+HasPrecipitation,Precipitation presence flag,Weather
+TempCategory,Temperature discretization,Weather
+CoastProximity,Proximity to coast,Spatial
+IsUrban,Urban/rural classification,Spatial

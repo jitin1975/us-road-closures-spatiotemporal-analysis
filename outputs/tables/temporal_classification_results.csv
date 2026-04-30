@@ -1,0 +1,5 @@
+Model,Accuracy,F1 Macro,F1 Weighted,CV F1 Mean,CV F1 Std
+Gradient Boosting,0.8758,0.4754,0.8546,0.463,0.0042
+Random Forest,0.6512,0.4301,0.7187,0.4387,0.0034
+Decision Tree,0.6184,0.4164,0.7003,0.4092,0.0059
+Logistic Regression,0.5433,0.3169,0.6402,0.3187,0.0018

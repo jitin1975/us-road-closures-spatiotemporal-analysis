@@ -1,0 +1,2 @@
+Model,Task,RMSE,MAPE(%),R2,Clf_Accuracy,Clf_F1
+XGBoost (spatio-temporal),Regression (Log Duration),1.1603,78.01,0.3894,1.0,1.0

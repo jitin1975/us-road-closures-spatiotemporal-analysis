@@ -1,0 +1,14 @@
+Technique,Key Finding,Interpretation,Application
+M1 Colocation,TrafficSignal ↔ Junction,Strongest co-location PI,Spatial Planning
+M2 Patterns,"HML, LMH recurring",Consistent seasonal cycling,Forecasting
+M3 Rules,Rush+Junction→Signal,Infrastructure clustering,Risk Analysis
+M4 Anomalies,~5% events,Extreme duration outliers,Quality Control
+M5 TS Anomaly,COVID-19 dip,Identified via Z+IQR consensus,Event Detection
+M6 Sequences,CA–TX co-active,Adjacent states co-occur,Network Analysis
+M7 Hotspots,Urban corridors,G* significant at 99%,Policy Target
+M8 Profiling,6 US regions,"West: longer, East: more events",Resource Allocation
+J1 ST-Hotspot,Summer peaks,"All regions, esp. Midwest",Scheduling
+J2 Joint ML,Joint > Spatial only,Weather adds <2% but consistent,Model Design
+J3 Interaction,Urban rush amplified,2× longer events in rush+urban,Traffic Impact
+J4 3D DBSCAN,ST clusters found,Seasonal-geographic groupings,Pattern Mining
+J5 Prediction,RF best hotspot model,Lag features most important,Forecasting

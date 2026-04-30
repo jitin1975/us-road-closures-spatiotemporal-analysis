@@ -1,0 +1,3 @@
+Method,N Clusters,Silhouette Score,Noise Points
+K-Means,4,0.5871,0
+DBSCAN,1,0.0,4

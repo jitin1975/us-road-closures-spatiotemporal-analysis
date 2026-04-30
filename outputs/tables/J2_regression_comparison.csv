@@ -1,0 +1,8 @@
+Feature Set,N Features,RMSE (log),R²
+Spatial Only,7,1.3713,0.1452
+Temporal Only,12,1.2134,0.3308
+Weather Only,5,1.4584,0.0332
+Spatial + Temporal,19,1.1558,0.3928
+Spatial + Weather,12,1.3892,0.1227
+Temporal + Weather,17,1.2072,0.3375
+Joint (All),24,1.1582,0.3903

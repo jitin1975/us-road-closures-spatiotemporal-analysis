@@ -1,0 +1,5 @@
+Model,RMSE,MAPE (%),R²
+Simple ES (α),26008.96,43.28,-0.3186
+Holt (trend),87565.99,135.73,-13.9469
+Holt-Winters (add),72001.0,107.0,-9.1055
+Holt-Winters (mul),29883.06,34.83,-0.7407

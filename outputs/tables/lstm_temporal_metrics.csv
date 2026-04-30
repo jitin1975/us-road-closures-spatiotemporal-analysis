@@ -1,0 +1,2 @@
+Model,RMSE,MAPE(%),R2
+"LSTM (temporal, look_back=6)",28651.84,29.33,-2.0445

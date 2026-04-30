@@ -1,0 +1,4 @@
+Series,ADF Statistic,p-value,Lags Used,Observations,Critical 1%,Critical 5%,Critical 10%,Is Stationary (5%)
+Monthly Events (Original),3.2193,1.0,10,60,-3.5444,-2.9111,-2.5932,NO
+Monthly Events (1st Difference),-6.3581,0.0,2,67,-3.532,-2.9058,-2.5904,YES
+Monthly Events (2nd Difference),-4.4429,0.0002,10,58,-3.5485,-2.9128,-2.5941,YES

@@ -1,0 +1,2 @@
+Model,RMSE,MAPE(%),R2
+"LSTM (spatio-temporal, look_back=8)",1.4792,131.81,-0.0007
