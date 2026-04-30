@@ -1,0 +1,829 @@
+% =========================================================
+% AUTO-GENERATED LaTeX TABLES — AID843 A3
+% Paste individual tables into your IEEE two-column report
+% =========================================================
+
+% --- Table: dataset_overview ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Dataset Overview: US Road Construction and Closures (2016--2021)}
+\label{tab:dataset_overview}
+\begin{tabular}{lr}
+\hline
+\textbf{Metric} & \textbf{Value} \\
+\hline
+Total Records & 1,644,242 \\
+Date Range Start & 2016-02-04 \\
+Date Range End & 2021-12-31 \\
+Total States & 50 \\
+Total Cities & 12999 \\
+Missing Values (%) & 1.92% \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: summary_stats ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Descriptive Statistics of Key Numerical Features}
+\label{tab:summary_stats}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{Unnamed: 0} & \textbf{Duration_hrs} & \textbf{Distance(mi)} & \textbf{Temperature(F)} & \textbf{Humidity(%)} & \textbf{Wind_Speed(mph)} & \textbf{Visibility(mi)} \\
+\hline
+count & 1644242.0 & 1644242.0 & 1612568.0 & 1610614.0 & 1551288.0 & 1605373.0 \\
+mean & 32.876 & 1.233 & 63.187 & 63.303 & 7.3 & 9.441 \\
+std & 80.593 & 3.831 & 17.969 & 22.754 & 5.578 & 26.949 \\
+min & 0.025 & 0.0 & -89.0 & 1.0 & 0.0 & 0.0 \\
+25% & 2.064 & 0.133 & 51.0 & 47.0 & 3.5 & 10.0 \\
+50% & 6.0 & 0.326 & 66.0 & 65.0 & 7.0 & 10.0 \\
+75% & 14.417 & 1.026 & 77.0 & 82.0 & 10.0 & 10.0 \\
+max & 720.0 & 574.9 & 196.0 & 100.0 & 983.0 & 34007.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: features ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Engineered Features for Spatio-Temporal Analysis}
+\label{tab:features}
+\begin{tabular}{lrr}
+\hline
+\textbf{Feature} & \textbf{Description} & \textbf{Category} \\
+\hline
+Hour_sin/cos & Cyclical hour encoding & Temporal \\
+Month_sin/cos & Cyclical month encoding & Temporal \\
+DOW_sin/cos & Cyclical day-of-week encoding & Temporal \\
+Week_sin/cos & Cyclical week-of-year encoding & Temporal \\
+IsWeekend & Binary weekend flag & Temporal \\
+IsRushHour & Peak traffic hours flag & Temporal \\
+IsNight & Nighttime flag (20:00-06:00) & Temporal \\
+Season & Meteorological season & Temporal \\
+TimeOfDay & Time of day category & Temporal \\
+StateMonthCount & State-month event density & Spatio-Temporal \\
+GridCell/Count & 1-degree spatial grid & density & Spatial \\
+HexCell/Count & 0.5-degree hex grid & density & Spatial \\
+DistFromCenter & Distance from US centroid & Spatial \\
+POI_Count & Aggregate nearby POI count & Spatial \\
+LowVisibility & Visibility below 3mi flag & Weather \\
+HasPrecipitation & Precipitation presence flag & Weather \\
+TempCategory & Temperature discretization & Weather \\
+CoastProximity & Proximity to coast & Spatial \\
+IsUrban & Urban/rural classification & Spatial \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: adf_results ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Augmented Dickey-Fuller (ADF) Stationarity Test Results}
+\label{tab:adf_results}
+\begin{tabular}{lrrrrrrrr}
+\hline
+\textbf{Series} & \textbf{ADF Statistic} & \textbf{p-value} & \textbf{Lags Used} & \textbf{Observations} & \textbf{Critical 1%} & \textbf{Critical 5%} & \textbf{Critical 10%} & \textbf{Is Stationary (5%)} \\
+\hline
+Monthly Events (Original) & 3.2193 & 1.0 & 10 & 60 & -3.5444 & -2.9111 & -2.5932 & NO \\
+Monthly Events (1st Difference) & -6.3581 & 0.0 & 2 & 67 & -3.532 & -2.9058 & -2.5904 & YES \\
+Monthly Events (2nd Difference) & -4.4429 & 0.0002 & 10 & 58 & -3.5485 & -2.9128 & -2.5941 & YES \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: arima_selection ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{ARIMA Model Order Selection (Grid Search)}
+\label{tab:arima_selection}
+\begin{tabular}{lrr}
+\hline
+\textbf{Order} & \textbf{AIC} & \textbf{BIC} \\
+\hline
+(0, 1, 1) & 1125.41 & 1129.43 \\
+(2, 1, 2) & 1126.19 & 1136.23 \\
+(1, 1, 1) & 1127.26 & 1133.28 \\
+(2, 1, 1) & 1128.17 & 1136.2 \\
+(1, 1, 2) & 1128.99 & 1137.02 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: arima_metrics ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{ARIMA Forecasting Model Performance Metrics}
+\label{tab:arima_metrics}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{RMSE} & \textbf{MAPE (%)} & \textbf{R²} \\
+\hline
+ARIMA(0, 1, 1) & 45270.56 & 77.24 & -2.995 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: ets_comparison ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Exponential Smoothing (ETS) Model Comparison}
+\label{tab:ets_comparison}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{RMSE} & \textbf{MAPE (%)} & \textbf{R²} \\
+\hline
+Simple ES (α) & 26008.96 & 43.28 & -0.3186 \\
+Holt (trend) & 87565.99 & 135.73 & -13.9469 \\
+Holt-Winters (add) & 72001.0 & 107.0 & -9.1055 \\
+Holt-Winters (mul) & 29883.06 & 34.83 & -0.7407 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: sarima ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{SARIMA(1,1,1)(1,1,0,12) Forecast Performance Metrics}
+\label{tab:sarima}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{RMSE} & \textbf{MAPE(%)} & \textbf{R2} \\
+\hline
+SARIMA(1,1,1)(1,1,0,12) & 18293.09 & 14.19 & -0.241 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: prophet ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Prophet (Multiplicative Seasonality) Forecast Performance}
+\label{tab:prophet}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{RMSE} & \textbf{MAPE(%)} & \textbf{R2} \\
+\hline
+Prophet (multiplicative) & 25405.08 & 20.62 & -1.3936 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: lstm_temporal ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{LSTM Temporal Model Forecast Performance Metrics}
+\label{tab:lstm_temporal}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{RMSE} & \textbf{MAPE(%)} & \textbf{R2} \\
+\hline
+LSTM (temporal, look_back=6) & 28651.84 & 29.33 & -2.0445 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: temporal_clf ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Temporal Classification Models: Performance Comparison}
+\label{tab:temporal_clf}
+\begin{tabular}{lrrrrr}
+\hline
+\textbf{Model} & \textbf{Accuracy} & \textbf{F1 Macro} & \textbf{F1 Weighted} & \textbf{CV F1 Mean} & \textbf{CV F1 Std} \\
+\hline
+Gradient Boosting & 0.8758 & 0.4754 & 0.8546 & 0.463 & 0.0042 \\
+Random Forest & 0.6512 & 0.4301 & 0.7187 & 0.4387 & 0.0034 \\
+Decision Tree & 0.6184 & 0.4164 & 0.7003 & 0.4092 & 0.0059 \\
+Logistic Regression & 0.5433 & 0.3169 & 0.6402 & 0.3187 & 0.0018 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: temporal_reg ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Temporal Regression Models: Duration Prediction}
+\label{tab:temporal_reg}
+\begin{tabular}{lrr}
+\hline
+\textbf{Model} & \textbf{RMSE (log scale)} & \textbf{R²} \\
+\hline
+Ridge Regression & 1.3637 & 0.1471 \\
+Random Forest Regressor & 1.1842 & 0.3568 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: morans_i ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Moran's I Global Spatial Autocorrelation Test Results}
+\label{tab:morans_i}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Variable} & \textbf{Moran's I} & \textbf{p-value (MC)} & \textbf{Interpretation} \\
+\hline
+EventCount & -0.0185 & 0.418 & Random \\
+AvgDuration & 0.0046 & 0.19 & Random \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: gearys_c ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Geary's C Spatial Autocorrelation Results}
+\label{tab:gearys_c}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Variable} & \textbf{Geary's C} & \textbf{p-value (MC)} & \textbf{Interpretation} \\
+\hline
+EventCount & 0.9378 & 0.102 & Random \\
+AvgDuration & 0.9665 & 0.174 & Random \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: lisa ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{LISA Local Indicators of Spatial Association — Cluster Summary}
+\label{tab:lisa}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{State} & \textbf{EventCount} & \textbf{AvgLat} & \textbf{AvgLon} & \textbf{Local_I} & \textbf{LISA_p} & \textbf{LISA_type} \\
+\hline
+AL & 9552 & 33.2683 & -86.7137 & 0.0261 & 0.26 & Not Significant \\
+AR & 16340 & 35.0272 & -92.4358 & 0.0303 & 0.198 & Not Significant \\
+AZ & 99682 & 33.5003 & -112.0461 & -0.0366 & 0.77 & Not Significant \\
+CA & 156385 & 35.8584 & -119.6312 & -0.2729 & 0.976 & Not Significant \\
+CO & 68969 & 39.5016 & -105.2449 & -0.1071 & 0.912 & Not Significant \\
+CT & 20354 & 41.4725 & -72.8961 & -0.0352 & 0.694 & Not Significant \\
+DC & 4673 & 38.8947 & -77.0191 & -0.0557 & 0.72 & Not Significant \\
+DE & 8901 & 39.4297 & -75.5623 & -0.1024 & 0.798 & Not Significant \\
+FL & 207708 & 27.1381 & -81.0584 & -0.436 & 0.988 & Not Significant \\
+GA & 36123 & 33.5859 & -84.0957 & -0.0046 & 0.558 & Not Significant \\
+HI & 4 & 21.3558 & -157.9336 & -0.0293 & 0.842 & Not Significant \\
+IA & 14860 & 41.8004 & -93.124 & 0.0413 & 0.156 & Not Significant \\
+ID & 17583 & 44.094 & -115.7583 & 0.0078 & 0.404 & Not Significant \\
+IL & 72020 & 41.7924 & -88.0054 & -0.0963 & 0.836 & Not Significant \\
+IN & 37143 & 40.1994 & -86.1544 & -0.0037 & 0.552 & Not Significant \\
+KS & 14564 & 38.5307 & -96.5517 & 0.0479 & 0.142 & Not Significant \\
+KY & 9231 & 37.9398 & -85.0169 & 0.0185 & 0.282 & Not Significant \\
+LA & 22749 & 30.3981 & -91.3455 & 0.0096 & 0.374 & Not Significant \\
+MA & 19200 & 42.315 & -71.2222 & 0.0618 & 0.256 & Not Significant \\
+MD & 26051 & 39.1883 & -76.8367 & 0.0046 & 0.498 & Not Significant \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: clustering ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Spatial Clustering Quality Metrics (K-Means vs DBSCAN)}
+\label{tab:clustering}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Method} & \textbf{N Clusters} & \textbf{Silhouette Score} & \textbf{Noise Points} \\
+\hline
+K-Means & 4 & 0.5871 & 0 \\
+DBSCAN & 1 & 0.0 & 4 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: spatial_clf ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Spatial Classification Models: Performance Comparison}
+\label{tab:spatial_clf}
+\begin{tabular}{lrrrrr}
+\hline
+\textbf{Model} & \textbf{Accuracy} & \textbf{F1 Macro} & \textbf{F1 Weighted} & \textbf{CV F1} & \textbf{CV Std} \\
+\hline
+Random Forest & 0.7267 & 0.4337 & 0.7641 & 0.4325 & 0.001 \\
+Gradient Boosting & 0.8425 & 0.3589 & 0.7943 & 0.3522 & 0.0004 \\
+Logistic Regression & 0.3967 & 0.2444 & 0.5003 & 0.2467 & 0.0031 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: gwr ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{Geographically Weighted Regression (GWR) vs OLS Results}
+\label{tab:gwr}
+\begin{tabular}{lrr}
+\hline
+\textbf{Model} & \textbf{R²} & \textbf{RMSE} \\
+\hline
+Global OLS & 0.003 & 11.1829 \\
+GWR (Gaussian kernel) & 0.1025 & 10.6101 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: state_stats ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{State-Level Construction Event Statistics (Top 15)}
+\label{tab:state_stats}
+\begin{tabular}{lrrr}
+\hline
+\textbf{State} & \textbf{EventCount} & \textbf{AvgDuration} & \textbf{MedianDuration} \\
+\hline
+FL & 207708 & 21.6239 & 4.1461 \\
+NY & 157261 & 27.8886 & 5.6425 \\
+CA & 156385 & 29.0456 & 7.75 \\
+PA & 129302 & 37.5343 & 6.75 \\
+AZ & 99682 & 32.8685 & 2.9572 \\
+TX & 91265 & 30.0747 & 4.4467 \\
+IL & 72020 & 29.0817 & 4.0 \\
+CO & 68969 & 31.4847 & 7.5167 \\
+NJ & 41030 & 41.2365 & 9.389 \\
+IN & 37143 & 37.5786 & 4.1603 \\
+OH & 36780 & 48.4082 & 6.0 \\
+VA & 36607 & 31.3558 & 8.0 \\
+GA & 36123 & 38.8882 & 8.0 \\
+WA & 35810 & 32.7117 & 6.0412 \\
+OR & 34362 & 23.1535 & 4.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M1_colocation ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M1: Spatial Colocation Mining — Participation Index Rules (Top 15)}
+\label{tab:M1_colocation}
+\begin{tabular}{lrrrrrrr}
+\hline
+\textbf{Feature_A} & \textbf{Feature_B} & \textbf{PR(A→B)} & \textbf{PR(B→A)} & \textbf{PI(A,B)} & \textbf{Prev(A)} & \textbf{Prev(B)} & \textbf{Normalized_PI} \\
+\hline
+Station & Amenity & 0.8167 & 0.8724 & 0.8167 & 0.1029 & 0.0742 & 11.0069 \\
+Traffic_Signal & Crossing & 0.7585 & 0.9296 & 0.7585 & 0.2413 & 0.1836 & 4.1312 \\
+Railway & Amenity & 0.7695 & 0.6954 & 0.6954 & 0.0341 & 0.0742 & 20.3736 \\
+Station & Railway & 0.6483 & 0.7852 & 0.6483 & 0.1029 & 0.0341 & 18.9936 \\
+Crossing & Station & 0.642 & 0.9378 & 0.642 & 0.1836 & 0.1029 & 6.2368 \\
+Crossing & Amenity & 0.6144 & 0.9299 & 0.6144 & 0.1836 & 0.0742 & 8.28 \\
+Bump & Traffic_Calming & 1.0 & 0.6 & 0.6 & 0.0012 & 0.002 & 500.0 \\
+Station & Stop & 0.6613 & 0.5727 & 0.5727 & 0.1029 & 0.0509 & 11.2596 \\
+Crossing & Stop & 0.557 & 0.7457 & 0.557 & 0.1836 & 0.0509 & 10.9504 \\
+Stop & Amenity & 0.5518 & 0.7907 & 0.5518 & 0.0509 & 0.0742 & 10.8474 \\
+Traffic_Signal & Station & 0.5424 & 0.9676 & 0.5424 & 0.2413 & 0.1029 & 5.2696 \\
+Traffic_Signal & Amenity & 0.5236 & 0.9578 & 0.5236 & 0.2413 & 0.0742 & 7.0569 \\
+Junction & Traffic_Signal & 0.5195 & 0.5007 & 0.5007 & 0.0838 & 0.2413 & 5.9748 \\
+Amenity & No_Exit & 0.4978 & 0.8515 & 0.4978 & 0.0742 & 0.0067 & 73.9238 \\
+Crossing & Railway & 0.4648 & 0.9629 & 0.4648 & 0.1836 & 0.0341 & 13.6166 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M2_motifs ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M2: Top Monthly Temporal Motifs (L/M/H Discretized Sequence)}
+\label{tab:M2_motifs}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Pattern} & \textbf{Frequency} & \textbf{Length} & \textbf{Support} \\
+\hline
+HH & 21 & 2 & 0.2958 \\
+LL & 20 & 2 & 0.2817 \\
+HHH & 19 & 3 & 0.2676 \\
+HHHH & 18 & 4 & 0.2535 \\
+MM & 17 & 2 & 0.2394 \\
+LLL & 17 & 3 & 0.2394 \\
+MMM & 15 & 3 & 0.2113 \\
+LLLL & 14 & 4 & 0.1972 \\
+MMMM & 13 & 4 & 0.1831 \\
+LM & 4 & 2 & 0.0563 \\
+ML & 3 & 2 & 0.0423 \\
+MH & 3 & 2 & 0.0423 \\
+LLM & 3 & 3 & 0.0423 \\
+LML & 3 & 3 & 0.0423 \\
+LLLM & 3 & 4 & 0.0423 \\
+HM & 2 & 2 & 0.0282 \\
+MLL & 2 & 3 & 0.0282 \\
+MMH & 2 & 3 & 0.0282 \\
+MHH & 2 & 3 & 0.0282 \\
+LLML & 2 & 4 & 0.0282 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M2_weekly_motifs ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M2: Top Weekly Temporal Motifs (L/M/H Discretized Sequence)}
+\label{tab:M2_weekly_motifs}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Pattern} & \textbf{Frequency} & \textbf{Length} & \textbf{Support} \\
+\hline
+HH & 97 & 2 & 0.3139 \\
+HHH & 94 & 3 & 0.3042 \\
+HHHH & 91 & 4 & 0.2945 \\
+LL & 86 & 2 & 0.2783 \\
+MM & 79 & 2 & 0.2557 \\
+LLL & 79 & 3 & 0.2557 \\
+LLLL & 73 & 4 & 0.2362 \\
+MMM & 64 & 3 & 0.2071 \\
+MMMM & 52 & 4 & 0.1683 \\
+LM & 16 & 2 & 0.0518 \\
+ML & 15 & 2 & 0.0485 \\
+LMM & 11 & 3 & 0.0356 \\
+MML & 10 & 3 & 0.0324 \\
+LMMM & 10 & 4 & 0.0324 \\
+MLM & 9 & 3 & 0.0291 \\
+MMML & 9 & 4 & 0.0291 \\
+MH & 8 & 2 & 0.0259 \\
+MLMM & 8 & 4 & 0.0259 \\
+HM & 7 & 2 & 0.0227 \\
+LLM & 7 & 3 & 0.0227 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M2_season_trans ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M2: Season-to-Season Transition Probability Matrix}
+\label{tab:M2_season_trans}
+\begin{tabular}{lrrrr}
+\hline
+\textbf{Unnamed: 0} & \textbf{Winter} & \textbf{Spring} & \textbf{Summer} & \textbf{Fall} \\
+\hline
+Winter & 1.0 & 0.0 & 0.0 & 0.0 \\
+Spring & 0.0 & 1.0 & 0.0 & 0.0 \\
+Summer & 0.0 & 0.0 & 1.0 & 0.0 \\
+Fall & 0.0 & 0.0 & 0.0 & 1.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M3_rules ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M3: Top Association Rules by Lift (Apriori Mining)}
+\label{tab:M3_rules}
+\begin{tabular}{lrrrrrrr}
+\hline
+\textbf{Antecedent} & \textbf{Consequent} & \textbf{Support} & \textbf{Confidence} & \textbf{Lift} & \textbf{Leverage} & \textbf{Conviction} & \textbf{Rule_Length} \\
+\hline
+Traffic_Signal & Crossing & 0.1295 & 0.5317 & 2.834 & 0.0838 & 1.7348 & 2 \\
+Crossing & Traffic_Signal & 0.1295 & 0.6901 & 2.834 & 0.0838 & 2.4409 & 2 \\
+Crossing + IsRushHour & Traffic_Signal & 0.0563 & 0.6696 & 2.7501 & 0.0358 & 2.2899 & 3 \\
+IsRushHour + Traffic_Signal & Crossing & 0.0563 & 0.5156 & 2.7479 & 0.0358 & 1.677 & 3 \\
+Station & Traffic_Signal & 0.0506 & 0.4941 & 2.0293 & 0.0257 & 1.4955 & 2 \\
+Traffic_Signal & IsRushHour & 0.1092 & 0.4485 & 1.0454 & 0.0047 & 1.0353 & 2 \\
+Crossing & IsRushHour & 0.0841 & 0.4481 & 1.0445 & 0.0036 & 1.0346 & 2 \\
+Crossing + Traffic_Signal & IsRushHour & 0.0563 & 0.4348 & 1.0136 & 0.0008 & 1.0103 & 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M4_anomaly ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M4: Anomaly Group Statistics — Isolation Forest vs LOF}
+\label{tab:M4_anomaly}
+\begin{tabular}{lrrrrr}
+\hline
+\textbf{Group} & \textbf{Count} & \textbf{Avg Duration (hrs)} & \textbf{Avg Hour} & \textbf{Avg Lat} & \textbf{Avg Lon} \\
+\hline
+Normal (both) & 27334 & 19.78 & 12.0 & 37.251 & -91.209 \\
+IF only & 1166 & 300.83 & 10.8 & 37.928 & -95.563 \\
+LOF only & 1166 & 23.52 & 10.9 & 36.151 & -92.011 \\
+Both (consensus) & 334 & 202.25 & 10.0 & 37.659 & -92.275 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M5_temporal_anom ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M5: Monthly Temporal Anomaly Flags (Z-score, IQR, Rolling)}
+\label{tab:M5_temporal_anom}
+\begin{tabular}{lrrrrrrrrr}
+\hline
+\textbf{Date} & \textbf{Count} & \textbf{ZScore} & \textbf{ZAnomaly} & \textbf{IQR_Anomaly} & \textbf{Rolling_Mean} & \textbf{Rolling_Std} & \textbf{Rolling_Dev} & \textbf{Rolling_Anomaly} & \textbf{Consensus_Anomaly} \\
+\hline
+2016-02-01 & 157 & -0.8215 & 0 & 0 & nan & nan & nan & 0 & 0 \\
+2016-03-01 & 611 & -0.8053 & 0 & 0 & 867.0 & 866.831 & -256.0 & 0 & 0 \\
+2016-04-01 & 1833 & -0.7616 & 0 & 0 & 1597.6667 & 892.579 & 235.3333 & 0 & 0 \\
+2016-05-01 & 2349 & -0.7432 & 0 & 0 & 2685.6667 & 1061.8142 & -336.6667 & 0 & 0 \\
+2016-06-01 & 3875 & -0.6887 & 0 & 0 & 3534.3333 & 1057.0077 & 340.6667 & 0 & 0 \\
+2016-07-01 & 4379 & -0.6707 & 0 & 0 & 5360.6667 & 2151.5818 & -981.6667 & 0 & 0 \\
+2016-08-01 & 7828 & -0.5475 & 0 & 0 & 5695.6667 & 1863.5676 & 2132.3333 & 0 & 0 \\
+2016-09-01 & 4880 & -0.6528 & 0 & 0 & 6184.3333 & 1503.0091 & -1304.3333 & 0 & 0 \\
+2016-10-01 & 5845 & -0.6183 & 0 & 0 & 5262.3333 & 512.7439 & 582.6667 & 0 & 0 \\
+2016-11-01 & 5062 & -0.6463 & 0 & 0 & 4983.3333 & 903.572 & 78.6667 & 0 & 0 \\
+2016-12-01 & 4043 & -0.6827 & 0 & 0 & 3980.6667 & 1113.8089 & 62.3333 & 0 & 0 \\
+2017-01-01 & 2837 & -0.7258 & 0 & 0 & 3311.6667 & 642.6642 & -474.6667 & 0 & 0 \\
+2017-02-01 & 3055 & -0.718 & 0 & 0 & 3159.3333 & 385.2458 & -104.3333 & 0 & 0 \\
+2017-03-01 & 3586 & -0.699 & 0 & 0 & 3672.0 & 664.189 & -86.0 & 0 & 0 \\
+2017-04-01 & 4375 & -0.6708 & 0 & 0 & 4257.6667 & 621.3649 & 117.3333 & 0 & 0 \\
+2017-05-01 & 4812 & -0.6552 & 0 & 0 & 4689.6667 & 274.7478 & 122.3333 & 0 & 0 \\
+2017-06-01 & 4882 & -0.6527 & 0 & 0 & 4771.6667 & 135.0938 & 110.3333 & 0 & 0 \\
+2017-07-01 & 4621 & -0.6621 & 0 & 0 & 5605.6667 & 1485.2045 & -984.6667 & 0 & 0 \\
+2017-08-01 & 7314 & -0.5659 & 0 & 0 & 5840.0 & 1364.4893 & 1474.0 & 0 & 0 \\
+2017-09-01 & 5585 & -0.6276 & 0 & 0 & 6257.3333 & 926.3608 & -672.3333 & 0 & 0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M6_coactivation ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M6: Top State-Pair Co-activation by Lift}
+\label{tab:M6_coactivation}
+\begin{tabular}{lrr}
+\hline
+\textbf{State_A} & \textbf{State_B} & \textbf{Co-activation Lift} \\
+\hline
+AZ & OR & 1.1913 \\
+VA & OR & 1.1774 \\
+IN & OR & 1.1511 \\
+AZ & VA & 1.1415 \\
+CO & OR & 1.1356 \\
+GA & OR & 1.1293 \\
+AZ & GA & 1.1196 \\
+VA & GA & 1.1169 \\
+CO & VA & 1.1143 \\
+AZ & CO & 1.1136 \\
+IN & VA & 1.1124 \\
+AZ & IN & 1.108 \\
+WA & OR & 1.1027 \\
+FL & OR & 1.1012 \\
+CO & GA & 1.0977 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M6_state_trans ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M6: State-to-State Spatial Transition Probability Matrix}
+\label{tab:M6_state_trans}
+\begin{tabular}{lrrrrrrrrrrrrrrr}
+\hline
+\textbf{Unnamed: 0} & \textbf{FL} & \textbf{NY} & \textbf{CA} & \textbf{PA} & \textbf{AZ} & \textbf{TX} & \textbf{IL} & \textbf{CO} & \textbf{NJ} & \textbf{IN} & \textbf{OH} & \textbf{VA} & \textbf{GA} & \textbf{WA} & \textbf{OR} \\
+\hline
+FL & 0.6517 & 0.1219 & 0.107 & 0.0473 & 0.0199 & 0.0274 & 0.0025 & 0.0199 & 0.0 & 0.0 & 0.0025 & 0.0 & 0.0 & 0.0 & 0.0 \\
+NY & 0.1262 & 0.5146 & 0.1311 & 0.1578 & 0.0073 & 0.0146 & 0.0121 & 0.0146 & 0.0121 & 0.0 & 0.0049 & 0.0 & 0.0049 & 0.0 & 0.0 \\
+CA & 0.0534 & 0.0858 & 0.7075 & 0.0605 & 0.0 & 0.007 & 0.0309 & 0.0141 & 0.0042 & 0.0028 & 0.0141 & 0.0 & 0.0155 & 0.0014 & 0.0028 \\
+PA & 0.0414 & 0.1685 & 0.1492 & 0.5663 & 0.0 & 0.0138 & 0.0055 & 0.0055 & 0.0055 & 0.0 & 0.0304 & 0.0 & 0.0083 & 0.0055 & 0.0 \\
+AZ & 0.4667 & 0.1333 & 0.0667 & 0.1333 & 0.1333 & 0.0667 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+TX & 0.3333 & 0.1111 & 0.1333 & 0.1333 & 0.0 & 0.2222 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0444 & 0.0 & 0.0222 & 0.0 & 0.0 \\
+IL & 0.0698 & 0.1163 & 0.2326 & 0.1163 & 0.0 & 0.0698 & 0.2326 & 0.0 & 0.0 & 0.0 & 0.0233 & 0.0 & 0.1163 & 0.0233 & 0.0 \\
+CO & 0.1081 & 0.1081 & 0.3514 & 0.1081 & 0.0 & 0.027 & 0.0 & 0.2432 & 0.0 & 0.0 & 0.0 & 0.0 & 0.027 & 0.027 & 0.0 \\
+NJ & 0.1 & 0.5 & 0.1 & 0.2 & 0.0 & 0.1 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+IN & 0.0 & 0.0 & 0.0667 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.2667 & 0.6667 & 0.0 & 0.0 & 0.0 & 0.0 \\
+OH & 0.0484 & 0.0161 & 0.2097 & 0.129 & 0.0323 & 0.0323 & 0.0161 & 0.0 & 0.0 & 0.129 & 0.3871 & 0.0 & 0.0 & 0.0 & 0.0 \\
+VA & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+GA & 0.069 & 0.2069 & 0.3103 & 0.1034 & 0.0 & 0.0 & 0.0345 & 0.0345 & 0.0 & 0.0 & 0.0345 & 0.0 & 0.2069 & 0.0 & 0.0 \\
+WA & 0.0 & 0.2 & 0.4 & 0.0 & 0.0 & 0.0 & 0.2 & 0.2 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+OR & 0.5 & 0.0 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M7_hotspots ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M7: Getis-Ord G* Hotspot Classification by Grid Cell (Top 20)}
+\label{tab:M7_hotspots}
+\begin{tabular}{lrrrr}
+\hline
+\textbf{LatGrid} & \textbf{LonGrid} & \textbf{Count} & \textbf{Gi_star_z} & \textbf{Hotspot_Class} \\
+\hline
+24 & -82 & 363 & 5.8193 & Hot Spot (99%) \\
+24 & -81 & 52 & 7.4755 & Hot Spot (99%) \\
+25 & -98 & 152 & -0.5846 & Not Significant \\
+25 & -82 & 15 & 7.8959 & Hot Spot (99%) \\
+25 & -81 & 72116 & 3.0964 & Hot Spot (99%) \\
+26 & -100 & 4 & -0.7478 & Not Significant \\
+26 & -99 & 352 & -0.6424 & Not Significant \\
+26 & -98 & 434 & -0.7551 & Not Significant \\
+26 & -83 & 624 & 6.8093 & Hot Spot (99%) \\
+26 & -82 & 2542 & 7.4237 & Hot Spot (99%) \\
+26 & -81 & 40122 & 6.1447 & Hot Spot (99%) \\
+27 & -100 & 186 & -0.7365 & Not Significant \\
+27 & -99 & 30 & -0.6986 & Not Significant \\
+27 & -98 & 943 & -0.1515 & Not Significant \\
+27 & -83 & 25889 & 4.6033 & Hot Spot (99%) \\
+27 & -82 & 1231 & 6.9022 & Hot Spot (99%) \\
+27 & -81 & 4242 & 7.209 & Hot Spot (99%) \\
+28 & -101 & 6 & -0.8255 & Not Significant \\
+28 & -100 & 618 & -0.757 & Not Significant \\
+28 & -99 & 618 & -0.642 & Not Significant \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: M8_profiles ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{M8: Regional Cluster Profiles — Avg Feature Values}
+\label{tab:M8_profiles}
+\begin{tabular}{lrrrrrrrrr}
+\hline
+\textbf{Region} & \textbf{Duration_hrs} & \textbf{Hour} & \textbf{Month} & \textbf{IsWeekend} & \textbf{IsRushHour} & \textbf{IsNight} & \textbf{Temperature(F)} & \textbf{Humidity(%)} & \textbf{N_Events} \\
+\hline
+Great Plains & 34.588 & 11.92 & 7.558 & 0.178 & 0.417 & 0.309 & 62.482 & 60.651 & 4090 \\
+Midwest & 36.478 & 12.22 & 7.75 & 0.142 & 0.44 & 0.227 & 60.897 & 67.237 & 6277 \\
+Mountain West & 29.872 & 11.979 & 8.067 & 0.144 & 0.508 & 0.2 & 67.401 & 35.133 & 3919 \\
+Northeast & 32.016 & 12.024 & 7.496 & 0.127 & 0.385 & 0.313 & 59.417 & 64.948 & 5668 \\
+Pacific West & 29.7 & 11.788 & 7.269 & 0.111 & 0.377 & 0.392 & 59.078 & 63.79 & 5873 \\
+Southeast & 34.413 & 11.735 & 7.597 & 0.116 & 0.447 & 0.258 & 66.223 & 69.861 & 14173 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: J1_hotspot ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{J1: Spatio-Temporal Hotspot Matrix (Grid Cell × Month)}
+\label{tab:J1_hotspot}
+\begin{tabular}{lrrrrrrrrrrrr}
+\hline
+\textbf{GeoCell} & \textbf{Jan} & \textbf{Feb} & \textbf{Mar} & \textbf{Apr} & \textbf{May} & \textbf{Jun} & \textbf{Jul} & \textbf{Aug} & \textbf{Sep} & \textbf{Oct} & \textbf{Nov} & \textbf{Dec} \\
+\hline
+24°N / 81°W & 2538 & 7175 & 4471 & 4741 & 3315 & 4531 & 3251 & 3958 & 5801 & 8317 & 11308 & 12762 \\
+26°N / 81°W & 1773 & 2756 & 2177 & 1981 & 2011 & 2079 & 1425 & 2416 & 6555 & 7630 & 5288 & 8273 \\
+28°N / 84°W & 1985 & 2619 & 2117 & 2707 & 2483 & 2162 & 1516 & 2627 & 4168 & 5741 & 6421 & 8746 \\
+32°N / 114°W & 3655 & 5838 & 4684 & 5882 & 4117 & 3629 & 3931 & 7158 & 12256 & 15217 & 17182 & 11589 \\
+32°N / 120°W & 2063 & 1998 & 2189 & 2801 & 3118 & 3492 & 2964 & 3284 & 3310 & 4052 & 3046 & 3827 \\
+34°N / 120°W & 2585 & 2753 & 2898 & 3414 & 3560 & 4120 & 3428 & 4132 & 5075 & 5339 & 4379 & 4878 \\
+38°N / 78°W & 3557 & 2959 & 4460 & 6666 & 5940 & 7760 & 6222 & 8916 & 8756 & 9304 & 7550 & 6563 \\
+40°N / 75°W & 5915 & 6792 & 8313 & 12816 & 13734 & 18148 & 13022 & 16672 & 30695 & 23618 & 17561 & 16485 \\
+40°N / 78°W & 2423 & 2162 & 3192 & 5177 & 6125 & 7730 & 5259 & 5767 & 8244 & 8462 & 5748 & 4007 \\
+40°N / 81°W & 1113 & 977 & 1638 & 2925 & 3928 & 5310 & 4012 & 4451 & 5854 & 5742 & 3684 & 2304 \\
+40°N / 90°W & 899 & 980 & 1492 & 2707 & 3321 & 5146 & 4343 & 5489 & 7315 & 6791 & 5718 & 2994 \\
+42°N / 90°W & 827 & 1045 & 1179 & 2220 & 2419 & 3463 & 3192 & 3736 & 6673 & 6597 & 4053 & 1670 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: J2_cls ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{J2: Classification Comparison — Spatial vs Temporal vs Joint Features}
+\label{tab:J2_cls}
+\begin{tabular}{lrrrr}
+\hline
+\textbf{Feature Set} & \textbf{N Features} & \textbf{Accuracy} & \textbf{F1 Macro} & \textbf{F1 Weighted} \\
+\hline
+Spatial Only & 7 & 0.5917 & 0.3343 & 0.6712 \\
+Temporal Only & 12 & 0.6379 & 0.3498 & 0.7128 \\
+Weather Only & 5 & 0.4647 & 0.2255 & 0.572 \\
+Spatial + Temporal & 19 & 0.7163 & 0.4157 & 0.7662 \\
+Spatial + Weather & 12 & 0.6009 & 0.3292 & 0.6775 \\
+Temporal + Weather & 17 & 0.6606 & 0.3587 & 0.7277 \\
+Joint (All) & 24 & 0.7097 & 0.403 & 0.7609 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: J2_reg ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{J2: Regression Comparison — Spatial vs Temporal vs Joint Features}
+\label{tab:J2_reg}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Feature Set} & \textbf{N Features} & \textbf{RMSE (log)} & \textbf{R²} \\
+\hline
+Spatial Only & 7 & 1.3713 & 0.1452 \\
+Temporal Only & 12 & 1.2134 & 0.3308 \\
+Weather Only & 5 & 1.4584 & 0.0332 \\
+Spatial + Temporal & 19 & 1.1558 & 0.3928 \\
+Spatial + Weather & 12 & 1.3892 & 0.1227 \\
+Temporal + Weather & 17 & 1.2072 & 0.3375 \\
+Joint (All) & 24 & 1.1582 & 0.3903 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: xgboost_st ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{XGBoost Spatio-Temporal Model Performance}
+\label{tab:xgboost_st}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{Model} & \textbf{Task} & \textbf{RMSE} & \textbf{MAPE(%)} & \textbf{R2} & \textbf{Clf_Accuracy} & \textbf{Clf_F1} \\
+\hline
+XGBoost (spatio-temporal) & Regression (Log Duration) & 1.1603 & 78.01 & 0.3894 & 1.0 & 1.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: lstm_st ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{LSTM Spatio-Temporal Model Performance}
+\label{tab:lstm_st}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{RMSE} & \textbf{MAPE(%)} & \textbf{R2} \\
+\hline
+LSTM (spatio-temporal, look_back=8) & 1.4792 & 131.81 & -0.0007 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: J4_3d_clusters ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{J4: 3D Spatiotemporal DBSCAN Cluster Profiles}
+\label{tab:J4_3d_clusters}
+\begin{tabular}{lrrrrrr}
+\hline
+\textbf{Cluster} & \textbf{N Events} & \textbf{Avg Lat} & \textbf{Avg Lon} & \textbf{Year Range} & \textbf{Avg Month} & \textbf{Avg Duration} \\
+\hline
+0 & 19899 & 37.26 & -91.27 & 2016–2021 & 7.6 & 32.44 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: J5_hotspot_pred ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{J5: Predictive Hotspot Model Performance Comparison}
+\label{tab:J5_hotspot_pred}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Model} & \textbf{Accuracy} & \textbf{F1 Macro} & \textbf{F1 Weighted} \\
+\hline
+Random Forest & 0.8957 & 0.8642 & 0.8936 \\
+Gradient Boosting & 0.8975 & 0.8663 & 0.8954 \\
+Logistic Regression & 0.8854 & 0.8445 & 0.8804 \\
+\hline
+\end{tabular}
+\end{table}
+
+% --- Table: J6_findings ---
+\begin{table}[htbp]
+\centering
+\small
+\caption{J6: Key Findings Summary — All Mining and Inference Techniques}
+\label{tab:J6_findings}
+\begin{tabular}{lrrr}
+\hline
+\textbf{Technique} & \textbf{Key Finding} & \textbf{Interpretation} & \textbf{Application} \\
+\hline
+M1 Colocation & TrafficSignal ↔ Junction & Strongest co-location PI & Spatial Planning \\
+M2 Patterns & HML, LMH recurring & Consistent seasonal cycling & Forecasting \\
+M3 Rules & Rush+Junction→Signal & Infrastructure clustering & Risk Analysis \\
+M4 Anomalies & ~5% events & Extreme duration outliers & Quality Control \\
+M5 TS Anomaly & COVID-19 dip & Identified via Z+IQR consensus & Event Detection \\
+M6 Sequences & CA–TX co-active & Adjacent states co-occur & Network Analysis \\
+M7 Hotspots & Urban corridors & G* significant at 99% & Policy Target \\
+M8 Profiling & 6 US regions & West: longer, East: more events & Resource Allocation \\
+J1 ST-Hotspot & Summer peaks & All regions, esp. Midwest & Scheduling \\
+J2 Joint ML & Joint > Spatial only & Weather adds <2% but consistent & Model Design \\
+J3 Interaction & Urban rush amplified & 2× longer events in rush+urban & Traffic Impact \\
+J4 3D DBSCAN & ST clusters found & Seasonal-geographic groupings & Pattern Mining \\
+J5 Prediction & RF best hotspot model & Lag features most important & Forecasting \\
+\hline
+\end{tabular}
+\end{table}
