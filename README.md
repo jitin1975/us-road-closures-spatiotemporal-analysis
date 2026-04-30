@@ -21,18 +21,9 @@ US Road Construction and Closures (2016–2021) | [Kaggle — sobhanmoosavi](htt
 
 ```
 us-road-closures-spatiotemporal-analysis/
-│
-├── A1/                          # Assignment 1
-│   ├── notebook.ipynb
-│   └── report.pdf
-│
-├── A2/                          # Assignment 2
-│   ├── notebook.ipynb
-│   └── report.pdf
-│
-├── A3/                          # Assignment 3 (this work)
-│   ├── stda-assgn-3.ipynb       # Main analysis notebook (4 parts)
-│   ├── report.tex               # IEEE two-column LaTeX report
+│                       
+│   ├── stda-assgn-3.ipynb       
+│   ├── report.tex               
 │   ├── report.pdf               # Compiled report
 │   │
 │   ├── outputs/
