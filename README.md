@@ -1,8 +1,8 @@
 # US Road Construction & Closures — Spatio-Temporal Data Analytics
 
-> **AID843: Spatio-Temporal Data Analytics-I** | Term 2 (2025–26)  
+> **AID843: Spatio-Temporal Data Analytics-I** |
 > International Institute of Information Technology Bangalore  
-> Programming Assignments A1, A2, A3
+> Programming Assignments A3
 
 ---
 
@@ -23,11 +23,9 @@ US Road Construction and Closures (2016–2021) | [Kaggle — sobhanmoosavi](htt
 us-road-closures-spatiotemporal-analysis/
 │                       
 │   ├── stda-assgn-3.ipynb       
-│   ├── report.tex               
 │   ├── report.pdf               # Compiled report
 │   │
 │   ├── outputs/
-│   │   ├── processed_data.parquet        # Cleaned dataset (1.64M records)
 │   │   ├── latex_tables.tex             # Auto-generated LaTeX tables (38 tables)
 │   │   │
 │   │   ├── eda/                         # Exploratory Data Analysis figures
@@ -140,7 +138,6 @@ The notebook is structured into **4 parts**, each self-contained:
 ### Part 1 — EDA & Feature Engineering
 - Loads and cleans the raw 6.17M record CSV
 - Computes 19 engineered features across temporal, spatial, and weather categories
-- Saves `outputs/processed_data.parquet` used by all subsequent parts
 - Produces 9 EDA figures and 3 summary tables
 
 ### Part 2 — Temporal Analysis & Machine Learning
