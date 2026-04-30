@@ -8,11 +8,7 @@
 
 ## Dataset
 
-| Assignment | Dataset | Source |
-|---|---|---|
-| A1 | *(your A1 dataset)* | *(link)* |
-| A2 | *(your A2 dataset)* | *(link)* |
-| A3 | US Road Construction and Closures (2016–2021) | [Kaggle — sobhanmoosavi](https://www.kaggle.com/datasets/sobhanmoosavi/us-road-construction-and-closures) |
+US Road Construction and Closures (2016–2021) | [Kaggle — sobhanmoosavi](https://www.kaggle.com/datasets/sobhanmoosavi/us-road-construction-and-closures) |
 
 **A3 Dataset Stats:**
 - 6,170,627 raw records → 1,644,242 after preprocessing
